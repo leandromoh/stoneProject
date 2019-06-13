@@ -1,4 +1,6 @@
 ﻿using System;
+using Services;
+using IServices;
 
 namespace stone
 {
@@ -6,7 +8,11 @@ namespace stone
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ILoremIpsumService service = new LoremIpsumFallback();
+
+            var text = service.GenerateLoremIpsum(true, 3, ParagraphSize.Short);
+
+            Console.WriteLine(text);
         }
     }
 }
