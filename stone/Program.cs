@@ -8,7 +8,7 @@ namespace stone
     {
         static void Main(string[] args)
         {
-            ILoremIpsumService service = new LoremIpsumFallback();
+            ILoremIpsumService service = new LoremIpsumCrawler();
 
             var text = service.GenerateLoremIpsum(true, 3, ParagraphSize.Short);
 
