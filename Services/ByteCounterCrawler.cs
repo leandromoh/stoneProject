@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using System;
 using IServices;
@@ -8,11 +7,16 @@ namespace Services
 {
     public class ByteCounterCrawler : IByteCounterService
     {
+        private IWebDriverFactory _webDriverFactory;
+
+        public ByteCounterCrawler(IWebDriverFactory WebDriverFactory)
+        {
+            _webDriverFactory = WebDriverFactory;
+        }
+
         public long CountBytes(string text)
         {
-            var path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-
-            using (IWebDriver driver = new FirefoxDriver(path))
+            using (IWebDriver driver = _webDriverFactory.GetDriver())
             {
                 driver.Navigate().GoToUrl("https://mothereff.in/byte-counter#");
 

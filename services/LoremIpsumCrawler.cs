@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -10,15 +9,16 @@ namespace Services
 {
     public class LoremIpsumCrawler : ILoremIpsumService
     {
-        // https://gist.github.com/andyyou/3052671
-        // https://stackoverflow.com/questions/10161413/headless-browser-for-c-sharp-net
+        private IWebDriverFactory _webDriverFactory;
+
+        public LoremIpsumCrawler(IWebDriverFactory WebDriverFactory)
+        {
+            _webDriverFactory = WebDriverFactory;
+        }
 
         public string GenerateLoremIpsum(bool startWithLoremIpsum, int quantityOfParagraphs, ParagraphSize paragraphSize)
         {
-            // https://stackoverflow.com/a/53830629 
-            var path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            
-            using (IWebDriver driver = new FirefoxDriver(path))
+            using (IWebDriver driver = _webDriverFactory.GetDriver())
             {
                 driver.Navigate().GoToUrl("http://www.loremipzum.com/pt/gerador-de-texto");
 
