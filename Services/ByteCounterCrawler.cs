@@ -2,16 +2,19 @@
 using OpenQA.Selenium.Support.UI;
 using System;
 using IServices;
+using System.Text.RegularExpressions;
 
 namespace Services
 {
     public class ByteCounterCrawler : IByteCounterService
     {
         private IWebDriverFactory _webDriverFactory;
+        private Regex _nonDigits;
 
         public ByteCounterCrawler(IWebDriverFactory WebDriverFactory)
         {
             _webDriverFactory = WebDriverFactory;
+            _nonDigits = new Regex(@"\D", RegexOptions.Compiled);
         }
 
         public long CountBytes(string text)
@@ -20,17 +23,26 @@ namespace Services
             {
                 driver.Navigate().GoToUrl("https://mothereff.in/byte-counter#");
 
-                IWebElement txt = driver.FindElement(By.CssSelector("textarea"));
-                txt.Clear();
-                txt.SendKeys(text);
+                SetConfigurations(driver, text);
 
-            // confirmar se realmente espera
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
-            
-                var result = driver.FindElement(By.Id("bytes")).Text;
-                
-                return long.Parse(result.Split(' ')[0]);
+                return GetOutputtedCount(driver);
             }
+        }
+
+        void SetConfigurations(IWebDriver driver, string text)
+        {
+            IWebElement txt = driver.FindElement(By.CssSelector("textarea"));
+            txt.Clear();
+            txt.SendKeys(text);
+        }
+
+        long GetOutputtedCount(IWebDriver driver)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
+
+            string count = driver.FindElement(By.Id("bytes")).Text;
+
+            return long.Parse(_nonDigits.Replace(count, string.Empty));
         }
     }
 }
