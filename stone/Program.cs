@@ -18,8 +18,14 @@ namespace stone
                                         .Build();
 
             IWebDriverFactory factory = new PhantomJSFactory();
-            ILoremIpsumService lorem = new LoremIpsumCrawler(factory, config["loremIpsumSite"]);
-            IByteCounterService counter = new ByteCounterCrawler(factory, config["byteCounterSite"]);
+            ILoremIpsumService loremCrawler = new LoremIpsumCrawler(factory, config["loremIpsumSite"]);
+            IByteCounterService counterCrawler = new ByteCounterCrawler(factory, config["byteCounterSite"]);
+
+            ILoremIpsumService loremFallback = new LoremIpsumFallback();
+            IByteCounterService counterFallback = new ByteCounterFallback();
+
+            ILoremIpsumService loremFallbackManager = new LoremIpsumFallBackManager(loremCrawler, loremFallback);
+            IByteCounterService counterFallbackManager = new ByteCounterFallBackManager(counterCrawler, counterFallback);
 
             var path = @"C:\Users\Leandro\Desktop\lorem.txt";
 
@@ -37,7 +43,7 @@ namespace stone
 
             TimeSpan elapsedTime = GetExecutionTime(() =>
             {
-                var writter = new FileWriterManager(lorem, counter, path, bufferSizeInMB, maxFileSizeInMB);
+                var writter = new FileWriterManager(loremFallbackManager, counterFallbackManager, path, bufferSizeInMB, maxFileSizeInMB);
 
                 iterations = writter.WriteLoremFile(true, 8, ParagraphSize.Long);
             });
