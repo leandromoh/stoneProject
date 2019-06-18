@@ -1,6 +1,10 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 using Services;
 using IServices;
+using Microsoft.Extensions.Configuration;
+using System.Diagnostics;
 
 namespace stone
 {
@@ -8,16 +12,52 @@ namespace stone
     {
         static void Main(string[] args)
         {
-            ILoremIpsumService service = new LoremIpsumFallback();
+            IConfiguration config = new ConfigurationBuilder()
+                                        .SetBasePath(Directory.GetCurrentDirectory())
+                                        .AddJsonFile("appsettings.json")
+                                        .Build();
 
-            // var text = service.GenerateLoremIpsum(true, 3, ParagraphSize.Short);
+            IWebDriverFactory factory = new PhantomJSFactory();
+            ILoremIpsumService lorem = new LoremIpsumCrawler(factory, config["loremIpsumSite"]);
+            IByteCounterService counter = new ByteCounterCrawler(factory, config["byteCounterSite"]);
 
-            Byte[] encodedBytes = new System.Text.UTF8Encoding().GetBytes("日本語ée");
+            var path = @"C:\Users\Leandro\Desktop\lorem.txt";
 
-            IByteCounterService counter = new ByteCounterCrawler();
-            long bytes = counter.CountBytes("i ♥ u");
+            if (!int.TryParse(config["bufferSizeInMB"], out var bufferSizeInMB))
+            {
+                bufferSizeInMB = 1;
+            }
 
-            Console.WriteLine(bytes);
+            if (!int.TryParse(config["maxFileSizeInMB"], out var maxFileSizeInMB))
+            {
+                maxFileSizeInMB = 100;
+            }
+
+            int iterations = 0;
+
+            TimeSpan elapsedTime = GetExecutionTime(() =>
+            {
+                var writter = new FileWriterManager(lorem, counter, path, bufferSizeInMB, maxFileSizeInMB);
+
+                iterations = writter.WriteLoremFile(true, 8, ParagraphSize.Long);
+            });
+
+            Console.Clear();
+            Console.WriteLine($"numero de iterações realizadas: {iterations}");
+            Console.WriteLine($"tempo total, em segundos, de geração do arquivo: {elapsedTime.TotalSeconds}");
+            Console.WriteLine($"tempo médio de escrita: {elapsedTime.TotalSeconds / iterations}");
+            Console.WriteLine($"nome arquivo: {Path.GetFileName(path)}");
+            Console.WriteLine($"tamanho, em bytes, do arquivo: {new FileInfo(path).Length}");
+            Console.WriteLine($"caminho arquivo: {Path.GetDirectoryName(path)}");
+            Console.Read();
+        }
+
+        public static TimeSpan GetExecutionTime(Action action)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            action();
+            stopwatch.Stop();
+            return stopwatch.Elapsed;
         }
     }
 }
