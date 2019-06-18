@@ -10,17 +10,19 @@ namespace Services
     public class LoremIpsumCrawler : ILoremIpsumService
     {
         private IWebDriverFactory _webDriverFactory;
+        private string _siteURL;
 
-        public LoremIpsumCrawler(IWebDriverFactory WebDriverFactory)
+        public LoremIpsumCrawler(IWebDriverFactory WebDriverFactory, string SiteURL)
         {
             _webDriverFactory = WebDriverFactory;
+            _siteURL = SiteURL;
         }
 
         public string GenerateLoremIpsum(bool startWithLoremIpsum, int quantityOfParagraphs, ParagraphSize paragraphSize)
         {
             using (IWebDriver driver = _webDriverFactory.GetDriver())
             {
-                driver.Navigate().GoToUrl("http://www.loremipzum.com/pt/gerador-de-texto");
+                driver.Navigate().GoToUrl(_siteURL);
 
                 SetConfigurations(driver, startWithLoremIpsum, quantityOfParagraphs, paragraphSize);
 

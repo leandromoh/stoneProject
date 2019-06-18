@@ -9,19 +9,21 @@ namespace Services
     public class ByteCounterCrawler : IByteCounterService
     {
         private IWebDriverFactory _webDriverFactory;
+        private string _siteURL;
         private Regex _nonDigits;
 
-        public ByteCounterCrawler(IWebDriverFactory WebDriverFactory)
+        public ByteCounterCrawler(IWebDriverFactory WebDriverFactory, string SiteURL)
         {
             _webDriverFactory = WebDriverFactory;
             _nonDigits = new Regex(@"\D", RegexOptions.Compiled);
+            _siteURL = SiteURL;
         }
 
         public int CountBytes(string text)
         {
             using (IWebDriver driver = _webDriverFactory.GetDriver())
             {
-                driver.Navigate().GoToUrl("https://mothereff.in/byte-counter#");
+                driver.Navigate().GoToUrl(_siteURL);
 
                 SetConfigurations(driver, text);
 
