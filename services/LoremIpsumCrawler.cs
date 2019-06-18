@@ -48,7 +48,7 @@ namespace Services
         void SetParagraphSize(IWebDriver driver, ParagraphSize paragraphSize)
         {
             IEnumerable<IWebElement> rdoSizeParagraphs = driver.FindElements(By.CssSelector("input[name=plenght]"))
-                                                               .OrderBy(x => x.GetProperty("value"));
+                                                        .OrderBy(x => x.GetAttribute("value"));
 
             rdoSizeParagraphs.ElementAt((int)paragraphSize - 1).Click();
         }

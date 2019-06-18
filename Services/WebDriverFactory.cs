@@ -14,7 +14,16 @@ namespace Services
     {
         public IWebDriver GetDriver()
         {
-            return new PhantomJSDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var service = PhantomJSDriverService.CreateDefaultService(path);
+            
+            service.AddArgument("--webdriver-loglevel=NONE");
+            service.AddArgument("--web-security=false");
+            service.AddArgument("--ssl-protocol=any");
+            service.AddArgument("--ignore-ssl-errors=true");
+            service.AddArgument("--load-images=false");
+
+            return new PhantomJSDriver(service);
         }
     }
 }

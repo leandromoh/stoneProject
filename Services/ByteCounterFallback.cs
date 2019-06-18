@@ -9,11 +9,9 @@ namespace Services
 {
     public class ByteCounterFallback : IByteCounterService
     {
-        private readonly UTF8Encoding encoding = new UTF8Encoding(); 
-
         public long CountBytes(string text)
         {
-            return encoding.GetBytes(text).LongLength;
+            return Encoding.UTF8.GetBytes(text).LongLength;
         }
     }
 }
