@@ -9,9 +9,9 @@ namespace Services
 {
     public class ByteCounterFallback : IByteCounterService
     {
-        public long CountBytes(string text)
+        public int CountBytes(string text)
         {
-            return Encoding.UTF8.GetBytes(text).LongLength;
+            return Encoding.UTF8.GetByteCount(text);
         }
     }
 }

@@ -66,7 +66,6 @@ namespace Services
             IWebElement btnGenerate = driver.FindElement(By.Id("generate2"));
             btnGenerate.Click();
 
-            // confirmar se realmente espera
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
 
             return driver.FindElement(By.Id("outputtext")).Text;

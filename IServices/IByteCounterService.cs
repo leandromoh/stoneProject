@@ -4,6 +4,6 @@ namespace IServices
 {
     public interface IByteCounterService
     {
-        long CountBytes(string text);
+        int CountBytes(string text);
     }
 }

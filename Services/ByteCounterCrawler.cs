@@ -17,7 +17,7 @@ namespace Services
             _nonDigits = new Regex(@"\D", RegexOptions.Compiled);
         }
 
-        public long CountBytes(string text)
+        public int CountBytes(string text)
         {
             using (IWebDriver driver = _webDriverFactory.GetDriver())
             {
@@ -36,13 +36,13 @@ namespace Services
             txt.SendKeys(text);
         }
 
-        long GetOutputtedCount(IWebDriver driver)
+        int GetOutputtedCount(IWebDriver driver)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
 
             string count = driver.FindElement(By.Id("bytes")).Text;
 
-            return long.Parse(_nonDigits.Replace(count, string.Empty));
+            return int.Parse(_nonDigits.Replace(count, string.Empty));
         }
     }
 }
