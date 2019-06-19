@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stone", "stone\stone.csproj", "{3B78A239-2A19-43E3-8B3C-469E3716292B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F6FF9C90-64F8-4FA0-8054-9175D2AAF8C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Test", "test\Services.Test\Services.Test.csproj", "{63FB55CC-B339-4632-BA31-1E4E037436D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,5 +62,20 @@ Global
 		{3B78A239-2A19-43E3-8B3C-469E3716292B}.Release|x64.Build.0 = Release|Any CPU
 		{3B78A239-2A19-43E3-8B3C-469E3716292B}.Release|x86.ActiveCfg = Release|Any CPU
 		{3B78A239-2A19-43E3-8B3C-469E3716292B}.Release|x86.Build.0 = Release|Any CPU
+		{63FB55CC-B339-4632-BA31-1E4E037436D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63FB55CC-B339-4632-BA31-1E4E037436D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63FB55CC-B339-4632-BA31-1E4E037436D6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{63FB55CC-B339-4632-BA31-1E4E037436D6}.Debug|x64.Build.0 = Debug|Any CPU
+		{63FB55CC-B339-4632-BA31-1E4E037436D6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{63FB55CC-B339-4632-BA31-1E4E037436D6}.Debug|x86.Build.0 = Debug|Any CPU
+		{63FB55CC-B339-4632-BA31-1E4E037436D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63FB55CC-B339-4632-BA31-1E4E037436D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63FB55CC-B339-4632-BA31-1E4E037436D6}.Release|x64.ActiveCfg = Release|Any CPU
+		{63FB55CC-B339-4632-BA31-1E4E037436D6}.Release|x64.Build.0 = Release|Any CPU
+		{63FB55CC-B339-4632-BA31-1E4E037436D6}.Release|x86.ActiveCfg = Release|Any CPU
+		{63FB55CC-B339-4632-BA31-1E4E037436D6}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{63FB55CC-B339-4632-BA31-1E4E037436D6} = {F6FF9C90-64F8-4FA0-8054-9175D2AAF8C8}
 	EndGlobalSection
 EndGlobal
