@@ -1,17 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IServices", "IServices\IServices.csproj", "{A944EE86-7CAA-416A-A78E-8BF29926F2BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IServices", "source\IServices\IServices.csproj", "{A944EE86-7CAA-416A-A78E-8BF29926F2BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{BBEF920A-3AE6-42A9-A073-B6CC49A72AA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "source\Services\Services.csproj", "{BBEF920A-3AE6-42A9-A073-B6CC49A72AA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stone", "stone\stone.csproj", "{3B78A239-2A19-43E3-8B3C-469E3716292B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "stone", "source\stone\stone.csproj", "{3B78A239-2A19-43E3-8B3C-469E3716292B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F6FF9C90-64F8-4FA0-8054-9175D2AAF8C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Test", "test\Services.Test\Services.Test.csproj", "{63FB55CC-B339-4632-BA31-1E4E037436D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.Test", "test\Services.Test\Services.Test.csproj", "{63FB55CC-B339-4632-BA31-1E4E037436D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{D1937981-C7CC-41B3-9FEE-988201F70B87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A944EE86-7CAA-416A-A78E-8BF29926F2BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -75,7 +74,16 @@ Global
 		{63FB55CC-B339-4632-BA31-1E4E037436D6}.Release|x86.ActiveCfg = Release|Any CPU
 		{63FB55CC-B339-4632-BA31-1E4E037436D6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{A944EE86-7CAA-416A-A78E-8BF29926F2BB} = {D1937981-C7CC-41B3-9FEE-988201F70B87}
+		{BBEF920A-3AE6-42A9-A073-B6CC49A72AA7} = {D1937981-C7CC-41B3-9FEE-988201F70B87}
+		{3B78A239-2A19-43E3-8B3C-469E3716292B} = {D1937981-C7CC-41B3-9FEE-988201F70B87}
 		{63FB55CC-B339-4632-BA31-1E4E037436D6} = {F6FF9C90-64F8-4FA0-8054-9175D2AAF8C8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {38C67F72-2801-4C71-A61B-8ABAE347F158}
 	EndGlobalSection
 EndGlobal
