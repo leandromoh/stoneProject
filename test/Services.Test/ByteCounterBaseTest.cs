@@ -2,6 +2,7 @@
 using Services;
 using IServices;
 using NUnit.Framework;
+using System.Text;
 
 namespace Services.Test
 {
@@ -18,21 +19,24 @@ namespace Services.Test
             counter = GetInstance();
         }
 
-        [TestCase("i ♥ u", 7)]
-        [TestCase("ユーザー別サイト", 24)]
-        [TestCase("简体中文", 12)]
-        [TestCase("크로스 플랫폼으로", 25)]
-        [TestCase("מדורים מבוקשים", 27)]
-        [TestCase("أفضل البحوث", 21)]
-        [TestCase("Σὲ γνωρίζω ἀπὸ", 29)]
-        [TestCase("Десятую Международную", 41)]
-        [TestCase("แผ่นดินฮั่นเสื่อมโทรมแสนสังเวช", 90)]
-        [TestCase("∮ E⋅da = Q, n → ∞, ∑ f(i) = ∏ g(i)", 46)]
-        [TestCase("français langue étrangère", 28)]
-        [TestCase("mañana olé", 12)]
-        public void CountBytes(string text, int expecting)
+        [TestCase("i ♥ u")]
+        [TestCase("ユーザー別サイト")]
+        [TestCase("简体中文")]
+        [TestCase("크로스 플랫폼으로")]
+        [TestCase("מדורים מבוקשים")]
+        [TestCase("أفضل البحوث")]
+        [TestCase("Σὲ γνωρίζω ἀπὸ")]
+        [TestCase("Десятую Международную")]
+        [TestCase("แผ่นดินฮั่นเสื่อมโทรมแสนสังเวช")]
+        [TestCase("∮ E⋅da = Q, n → ∞, ∑ f(i) = ∏ g(i)")]
+        [TestCase("français langue étrangère")]
+        [TestCase("mañana olé")]
+        public void CountBytes(string text)
         {
-            Assert.That(counter.CountBytes(text), Is.EqualTo(expecting));
+            var result = counter.CountBytes(text);
+            var expecting = Encoding.UTF8.GetByteCount(text);
+
+            Assert.That(result, Is.EqualTo(expecting));
         }
     }
 }
