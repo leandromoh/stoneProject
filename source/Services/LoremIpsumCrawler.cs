@@ -12,10 +12,10 @@ namespace Services
         private IWebDriverFactory _webDriverFactory;
         private string _siteURL;
 
-        public LoremIpsumCrawler(IWebDriverFactory WebDriverFactory, string SiteURL)
+        public LoremIpsumCrawler(IWebDriverFactory WebDriverFactory)
         {
             _webDriverFactory = WebDriverFactory;
-            _siteURL = SiteURL;
+            _siteURL = "http://www.loremipzum.com/pt/gerador-de-texto";
         }
 
         public string GenerateLoremIpsum(bool startWithLoremIpsum, int quantityOfParagraphs, ParagraphSize paragraphSize)

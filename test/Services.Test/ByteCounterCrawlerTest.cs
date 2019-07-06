@@ -11,7 +11,7 @@ namespace Services.Test
         protected override IByteCounterService GetInstance()
         {
             IWebDriverFactory factory = new PhantomJSFactory();
-            IByteCounterService counterCrawler = new ByteCounterCrawler(factory, "https://mothereff.in/byte-counter#");
+            IByteCounterService counterCrawler = new ByteCounterCrawler(factory);
             return counterCrawler;
         }
     }

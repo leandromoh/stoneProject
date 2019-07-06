@@ -18,8 +18,8 @@ namespace stone
                                         .Build();
 
             IWebDriverFactory factory = new PhantomJSFactory();
-            ILoremIpsumService loremCrawler = new LoremIpsumCrawler(factory, config["loremIpsumSite"]);
-            IByteCounterService counterCrawler = new ByteCounterCrawler(factory, config["byteCounterSite"]);
+            ILoremIpsumService loremCrawler = new LoremIpsumCrawler(factory);
+            IByteCounterService counterCrawler = new ByteCounterCrawler(factory);
 
             ILoremIpsumService loremFallback = new LoremIpsumFallback();
             IByteCounterService counterFallback = new ByteCounterFallback();

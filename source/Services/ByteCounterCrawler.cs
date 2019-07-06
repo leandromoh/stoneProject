@@ -12,11 +12,11 @@ namespace Services
         private string _siteURL;
         private Regex _nonDigits;
 
-        public ByteCounterCrawler(IWebDriverFactory WebDriverFactory, string SiteURL)
+        public ByteCounterCrawler(IWebDriverFactory WebDriverFactory)
         {
             _webDriverFactory = WebDriverFactory;
             _nonDigits = new Regex(@"\D", RegexOptions.Compiled);
-            _siteURL = SiteURL;
+            _siteURL = "https://mothereff.in/byte-counter#";
         }
 
         public int CountBytes(string text)
