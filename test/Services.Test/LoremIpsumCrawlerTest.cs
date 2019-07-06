@@ -11,7 +11,7 @@ namespace Services.Test
         protected override ILoremIpsumService GetInstance()
         {
             IWebDriverFactory factory = new PhantomJSFactory();
-            ILoremIpsumService loremCrawler = new LoremIpsumCrawler(factory, "https://mothereff.in/byte-counter#");
+            ILoremIpsumService loremCrawler = new LoremIpsumCrawler(factory);
             return loremCrawler;
         }
     }
