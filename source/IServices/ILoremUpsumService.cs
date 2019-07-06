@@ -4,9 +4,9 @@ namespace IServices
 {
     public enum ParagraphSize
     {
-        Short = 3,
-        Medium = 6,
-        Long = 9,
+        Short = 1,
+        Medium = 2,
+        Long = 3,
     }
 
     public interface ILoremIpsumService

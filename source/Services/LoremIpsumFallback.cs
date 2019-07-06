@@ -27,8 +27,11 @@ namespace Services
 
         public string GenerateLoremIpsum(bool startWithLoremIpsum, int quantityOfParagraphs, ParagraphSize paragraphSize)
         {
-            var quantityOfPhrasesPerParagraph = (int)paragraphSize;
-
+            var quantityOfPhrasesPerParagraph = paragraphSize == ParagraphSize.Long
+                                                    ? 9
+                                                    : paragraphSize == ParagraphSize.Medium
+                                                        ? 6
+                                                        : 3;
             var paragraphs =
                     Phrases
                         .Repeat()
